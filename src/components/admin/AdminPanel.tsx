@@ -8,6 +8,7 @@ import { CategorySection } from "./CategorySection";
 import { PromotionSection } from "./PromotionSection";
 import { QrButton } from "./QrButton";
 import { ChangePassword } from "./ChangePassword";
+import { BrandSection } from "./BrandSection";
 
 type Props = {
   restaurant: Restaurant;
@@ -16,7 +17,8 @@ type Props = {
   siteUrl: string;
 };
 
-export function AdminPanel({ restaurant, initialCategories, initialPromotions, siteUrl }: Props) {
+export function AdminPanel({ restaurant: initialRestaurant, initialCategories, initialPromotions, siteUrl }: Props) {
+  const [restaurant, setRestaurant] = useState(initialRestaurant);
   const [categories, setCategories] = useState(initialCategories);
   const [promotions, setPromotions] = useState(initialPromotions);
   const supabase = createClient();
@@ -82,6 +84,10 @@ export function AdminPanel({ restaurant, initialCategories, initialPromotions, s
             Salir
           </button>
         </div>
+      </div>
+
+      <div className="mb-8">
+        <BrandSection restaurant={restaurant} onUpdated={setRestaurant} />
       </div>
 
       <div className="space-y-4">

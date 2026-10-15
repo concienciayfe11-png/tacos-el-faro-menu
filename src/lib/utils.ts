@@ -17,6 +17,17 @@ export function isPromotionActive(promo: {
   return true;
 }
 
+/** Convierte un color hex (#RRGGBB) a rgba() con la opacidad dada, para fondos translúcidos de marca. */
+export function hexToRgba(hex: string, alpha: number) {
+  const clean = hex.replace("#", "");
+  const full = clean.length === 3 ? clean.split("").map((c) => c + c).join("") : clean;
+  const r = parseInt(full.slice(0, 2), 16);
+  const g = parseInt(full.slice(2, 4), 16);
+  const b = parseInt(full.slice(4, 6), 16);
+  if ([r, g, b].some((n) => Number.isNaN(n))) return hex;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 /** Comprime una imagen en el navegador antes de subirla: máx 1200px de ancho, calidad 80. */
 export function compressImage(file: File, maxWidth = 1200, quality = 0.8): Promise<Blob> {
   return new Promise((resolve, reject) => {

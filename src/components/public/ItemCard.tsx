@@ -7,10 +7,11 @@ import { formatPrice } from "@/lib/utils";
 type Props = {
   item: Item;
   lang: "es" | "en";
+  headingFont?: string;
   onOpenPhoto: (src: string, alt: string) => void;
 };
 
-export function ItemCard({ item, lang, onOpenPhoto }: Props) {
+export function ItemCard({ item, lang, headingFont, onOpenPhoto }: Props) {
   const [imageFailed, setImageFailed] = useState(false);
   const name = lang === "en" && item.name_en ? item.name_en : item.name_es;
   const description = lang === "en" && item.description_en ? item.description_en : item.description_es;
@@ -37,7 +38,12 @@ export function ItemCard({ item, lang, onOpenPhoto }: Props) {
       )}
       <div className="flex-1">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="font-serif text-base font-semibold leading-tight">{name}</h3>
+          <h3
+            className="text-base font-semibold leading-tight"
+            style={headingFont ? { fontFamily: headingFont } : undefined}
+          >
+            {name}
+          </h3>
           <span className="shrink-0 text-base font-semibold text-stone-800">
             {formatPrice(item.price)}
           </span>

@@ -5,6 +5,13 @@ export type Restaurant = {
   logo_url: string | null;
   whatsapp: string | null;
   created_at: string;
+  primary_color: string | null;
+  secondary_color: string | null;
+  font_heading: string | null;
+  font_body: string | null;
+  hero_image_url: string | null;
+  google_maps_url: string | null;
+  instagram_url: string | null;
 };
 
 export type Category = {
