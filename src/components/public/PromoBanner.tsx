@@ -21,8 +21,10 @@ export function PromoBanner({ promotions, lang }: Props) {
             {lang === "en" && promo.title_en ? promo.title_en : promo.title_es}
             {promo.discount_pct ? ` — ${promo.discount_pct}% ${lang === "en" ? "off" : "de descuento"}` : ""}
           </p>
-          {promo.description_es && (
-            <p className="text-sm text-orange-50">{promo.description_es}</p>
+          {(lang === "en" && promo.description_en ? promo.description_en : promo.description_es) && (
+            <p className="text-sm text-orange-50">
+              {lang === "en" && promo.description_en ? promo.description_en : promo.description_es}
+            </p>
           )}
         </div>
       ))}

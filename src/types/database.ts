@@ -35,6 +35,7 @@ export type Promotion = {
   title_es: string;
   title_en: string | null;
   description_es: string | null;
+  description_en: string | null;
   discount_pct: number | null;
   starts_at: string | null;
   ends_at: string | null;

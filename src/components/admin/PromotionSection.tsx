@@ -57,12 +57,20 @@ export function PromotionSection({ restaurantId, promotions, onChanged }: Props)
                 className="min-h-11 rounded-md border border-stone-300 px-2 text-sm"
               />
             </div>
-            <textarea
-              defaultValue={promo.description_es ?? ""}
-              onBlur={(e) => update(promo.id, { description_es: e.target.value })}
-              placeholder="Descripción"
-              className="mt-2 min-h-11 w-full rounded-md border border-stone-300 px-2 py-1 text-sm"
-            />
+            <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              <textarea
+                defaultValue={promo.description_es ?? ""}
+                onBlur={(e) => update(promo.id, { description_es: e.target.value })}
+                placeholder="Descripción (ES)"
+                className="min-h-11 w-full rounded-md border border-stone-300 px-2 py-1 text-sm"
+              />
+              <textarea
+                defaultValue={promo.description_en ?? ""}
+                onBlur={(e) => update(promo.id, { description_en: e.target.value })}
+                placeholder="Description (EN)"
+                className="min-h-11 w-full rounded-md border border-stone-300 px-2 py-1 text-sm"
+              />
+            </div>
             <div className="mt-2 flex flex-wrap items-center gap-3 text-sm">
               <label className="flex items-center gap-1">
                 % descuento
