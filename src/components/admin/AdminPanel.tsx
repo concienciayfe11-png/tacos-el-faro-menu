@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import { CategorySection } from "./CategorySection";
 import { PromotionSection } from "./PromotionSection";
 import { QrButton } from "./QrButton";
+import { ChangePassword } from "./ChangePassword";
 
 type Props = {
   restaurant: Restaurant;
@@ -76,6 +77,7 @@ export function AdminPanel({ restaurant, initialCategories, initialPromotions, s
             Ver mi menú
           </a>
           <QrButton url={menuUrl} filename={restaurant.slug} />
+          <ChangePassword />
           <button onClick={logout} className="text-sm text-stone-500 underline">
             Salir
           </button>
