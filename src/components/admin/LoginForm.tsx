@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { PasswordInput } from "./PasswordInput";
 
 export function LoginForm() {
   const [email, setEmail] = useState("");
@@ -37,12 +38,11 @@ export function LoginForm() {
       </div>
       <div>
         <label className="mb-1 block text-sm font-medium text-stone-700">Contraseña</label>
-        <input
-          type="password"
-          required
+        <PasswordInput
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="min-h-11 w-full rounded-md border border-stone-300 px-3"
+          onChange={setPassword}
+          required
+          className="min-h-11 w-full rounded-md border border-stone-300 py-2 pl-3 pr-10"
         />
       </div>
       {error && <p className="text-sm text-red-600">{error}</p>}
