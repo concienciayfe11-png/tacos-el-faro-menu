@@ -12,6 +12,11 @@ export type Restaurant = {
   hero_image_url: string | null;
   google_maps_url: string | null;
   instagram_url: string | null;
+  facebook_url: string | null;
+  tiktok_url: string | null;
+  address: string | null;
+  hours: string | null;
+  phone: string | null;
 };
 
 export type Category = {
@@ -34,6 +39,8 @@ export type Item = {
   video_url: string | null;
   available: boolean;
   position: number;
+  featured: boolean;
+  rating: number;
 };
 
 export type Promotion = {

@@ -34,6 +34,8 @@ export function ItemRow({ item, restaurantSlug, onChanged, isFirst, isLast }: Pr
         position: next.position,
         photo_url: next.photo_url,
         video_url: next.video_url,
+        featured: next.featured,
+        rating: next.rating,
       })
       .eq("id", item.id);
     if (!error) {
@@ -142,6 +144,29 @@ export function ItemRow({ item, restaurantSlug, onChanged, isFirst, isLast }: Pr
                 onChange={(e) => save({ available: !e.target.checked })}
               />
               Agotado
+            </label>
+
+            <label className="flex items-center gap-1 text-sm">
+              <input
+                type="checkbox"
+                checked={draft.featured}
+                onChange={(e) => save({ featured: e.target.checked })}
+              />
+              Destacado
+            </label>
+
+            <label className="flex items-center gap-1 text-sm">
+              Rating
+              <input
+                type="number"
+                min={0}
+                max={5}
+                step="0.5"
+                value={draft.rating}
+                onChange={(e) => setDraft({ ...draft, rating: Number(e.target.value) })}
+                onBlur={() => save({ rating: Math.min(5, Math.max(0, draft.rating)) })}
+                className="min-h-11 w-16 rounded-md border border-stone-300 px-2"
+              />
             </label>
 
             <div className="ml-auto flex items-center gap-1">

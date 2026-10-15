@@ -22,6 +22,11 @@ type BrandPatch = Partial<
     | "font_body"
     | "google_maps_url"
     | "instagram_url"
+    | "facebook_url"
+    | "tiktok_url"
+    | "address"
+    | "hours"
+    | "phone"
   >
 >;
 
@@ -181,15 +186,69 @@ export function BrandSection({ restaurant, onUpdated }: Props) {
             />
           </label>
 
+          <div className="grid grid-cols-2 gap-3">
+            <label className="block">
+              <span className="mb-1 block text-sm font-medium text-stone-700">URL de Instagram</span>
+              <input
+                defaultValue={draft.instagram_url ?? ""}
+                onBlur={(e) => save({ instagram_url: e.target.value || null })}
+                placeholder="https://instagram.com/..."
+                className="min-h-11 w-full rounded-md border border-stone-300 px-2 text-sm"
+              />
+            </label>
+            <label className="block">
+              <span className="mb-1 block text-sm font-medium text-stone-700">URL de Facebook</span>
+              <input
+                defaultValue={draft.facebook_url ?? ""}
+                onBlur={(e) => save({ facebook_url: e.target.value || null })}
+                placeholder="https://facebook.com/..."
+                className="min-h-11 w-full rounded-md border border-stone-300 px-2 text-sm"
+              />
+            </label>
+          </div>
+
           <label className="block">
-            <span className="mb-1 block text-sm font-medium text-stone-700">URL de Instagram</span>
+            <span className="mb-1 block text-sm font-medium text-stone-700">URL de TikTok</span>
             <input
-              defaultValue={draft.instagram_url ?? ""}
-              onBlur={(e) => save({ instagram_url: e.target.value || null })}
-              placeholder="https://instagram.com/..."
+              defaultValue={draft.tiktok_url ?? ""}
+              onBlur={(e) => save({ tiktok_url: e.target.value || null })}
+              placeholder="https://tiktok.com/@..."
               className="min-h-11 w-full rounded-md border border-stone-300 px-2 text-sm"
             />
           </label>
+
+          <h3 className="pt-2 text-sm font-semibold text-stone-800">Ubicación y contacto</h3>
+
+          <label className="block">
+            <span className="mb-1 block text-sm font-medium text-stone-700">Dirección</span>
+            <input
+              defaultValue={draft.address ?? ""}
+              onBlur={(e) => save({ address: e.target.value || null })}
+              placeholder="Calle 123, Ciudad, Estado"
+              className="min-h-11 w-full rounded-md border border-stone-300 px-2 text-sm"
+            />
+          </label>
+
+          <div className="grid grid-cols-2 gap-3">
+            <label className="block">
+              <span className="mb-1 block text-sm font-medium text-stone-700">Horario</span>
+              <input
+                defaultValue={draft.hours ?? ""}
+                onBlur={(e) => save({ hours: e.target.value || null })}
+                placeholder="Lun-Dom 11am-9pm"
+                className="min-h-11 w-full rounded-md border border-stone-300 px-2 text-sm"
+              />
+            </label>
+            <label className="block">
+              <span className="mb-1 block text-sm font-medium text-stone-700">Teléfono</span>
+              <input
+                defaultValue={draft.phone ?? ""}
+                onBlur={(e) => save({ phone: e.target.value || null })}
+                placeholder="+1 305 555 1234"
+                className="min-h-11 w-full rounded-md border border-stone-300 px-2 text-sm"
+              />
+            </label>
+          </div>
 
           {saved && <p className="text-sm text-green-600">Marca actualizada ✓</p>}
         </div>
