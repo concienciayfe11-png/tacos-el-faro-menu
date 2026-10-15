@@ -7,9 +7,10 @@ import { formatPrice } from "@/lib/utils";
 type Props = {
   item: Item;
   lang: "es" | "en";
+  onOpenPhoto: (src: string, alt: string) => void;
 };
 
-export function ItemCard({ item, lang }: Props) {
+export function ItemCard({ item, lang, onOpenPhoto }: Props) {
   const [imageFailed, setImageFailed] = useState(false);
   const name = lang === "en" && item.name_en ? item.name_en : item.name_es;
   const description = lang === "en" && item.description_en ? item.description_en : item.description_es;
@@ -18,14 +19,21 @@ export function ItemCard({ item, lang }: Props) {
   return (
     <div className={`flex gap-3 rounded-lg p-2 ${!item.available ? "opacity-50" : ""}`}>
       {showPhoto && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={item.photo_url!}
-          alt={name}
-          loading="lazy"
-          onError={() => setImageFailed(true)}
-          className="h-20 w-20 shrink-0 rounded-lg object-cover"
-        />
+        <button
+          type="button"
+          onClick={() => onOpenPhoto(item.photo_url!, name)}
+          aria-label={`Ampliar foto de ${name}`}
+          className="h-20 w-20 shrink-0"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={item.photo_url!}
+            alt={name}
+            loading="lazy"
+            onError={() => setImageFailed(true)}
+            className="h-20 w-20 rounded-lg object-cover"
+          />
+        </button>
       )}
       <div className="flex-1">
         <div className="flex items-start justify-between gap-2">

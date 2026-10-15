@@ -7,6 +7,7 @@ import { WhatsAppButton } from "./WhatsAppButton";
 import { PromoBanner } from "./PromoBanner";
 import { CategoryNav } from "./CategoryNav";
 import { ItemCard } from "./ItemCard";
+import { Lightbox } from "./Lightbox";
 
 type Props = {
   restaurant: Restaurant;
@@ -17,6 +18,7 @@ type Props = {
 export function MenuClient({ restaurant, categories, promotions }: Props) {
   const [lang, setLang] = useState<"es" | "en">("es");
   const [activeId, setActiveId] = useState<string | null>(categories[0]?.id ?? null);
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
 
   function scrollTo(id: string) {
     setActiveId(id);
@@ -53,7 +55,12 @@ export function MenuClient({ restaurant, categories, promotions }: Props) {
             </h2>
             <div className="space-y-1">
               {cat.items.map((item) => (
-                <ItemCard key={item.id} item={item} lang={lang} />
+                <ItemCard
+                  key={item.id}
+                  item={item}
+                  lang={lang}
+                  onOpenPhoto={(src, alt) => setLightbox({ src, alt })}
+                />
               ))}
               {cat.items.length === 0 && (
                 <p className="text-sm text-stone-400">
@@ -75,6 +82,10 @@ export function MenuClient({ restaurant, categories, promotions }: Props) {
       </footer>
 
       <WhatsAppButton whatsapp={restaurant.whatsapp} lang={lang} />
+
+      {lightbox && (
+        <Lightbox src={lightbox.src} alt={lightbox.alt} onClose={() => setLightbox(null)} />
+      )}
     </div>
   );
 }
